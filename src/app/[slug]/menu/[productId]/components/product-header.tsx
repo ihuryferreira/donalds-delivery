@@ -22,15 +22,17 @@ const ProductHeader = ({ product }: ProductHeaderProps) => {
         onClick={handleBackClick}
       >
         <ChevronLeftIcon />
-      </Button><Image
+      </Button>
+      <Image
         src={product.imageUrl}
         alt={product.name}
         fill
-        className="object-contain" /><Button
-          variant="secondary"
-          size="icon"
-          className="absolute right-4 top-4 z-50 rounded-full"
-        >
+        className="object-contain" />
+      <Button
+        variant="secondary"
+        size="icon"
+        className="absolute right-4 top-4 z-50 rounded-full"
+      >
         <ScrollTextIcon />
       </Button>
     </div>
