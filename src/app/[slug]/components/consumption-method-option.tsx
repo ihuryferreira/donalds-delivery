@@ -21,7 +21,7 @@ const ConsumptionMethodOption = ({
   option,
 }: ConsumptionMethodOptionProps) => {
   return (
-    <Card className="mb-4">
+    <Card className="mb-6">
       <CardContent className="flex flex-col items-center gap-8 py-8">
         <div className="relative h-[80px] w-[80px]">
           <Image
@@ -31,7 +31,7 @@ const ConsumptionMethodOption = ({
             className="object-contain"
           />
         </div>
-        <Button variant="secondary" className="rounded-full" asChild>
+        <Button variant="secondary" className="rounded-full text-[13px]" asChild>
           <Link href={`/${slug}/menu?consumptionMethod=${option}`}>
             {buttonText}
           </Link>
