@@ -1,7 +1,12 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ConsumptionMethod } from "@prisma/client";
+import { Loader2Icon } from "lucide-react";
+import { useParams, useSearchParams } from "next/navigation";
+import { useContext, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { PatternFormat } from "react-number-format";
+import { toast } from "sonner";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
@@ -25,6 +30,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
+import { createOrder } from "../actions/create-order";
+import { CartContext } from "../contexts/cart";
 import { isValidCpf } from "../helpers/cpf";
 
 const formSchema = z.object({
@@ -50,6 +57,10 @@ interface FinishOrderDialogProps {
 }
 
 const FinishOrderDialog = ({ open, onOpenChange }: FinishOrderDialogProps) => {
+  const { slug } = useParams<{ slug: string }>();
+  const { products } = useContext(CartContext)
+  const searchParams = useSearchParams();
+  const [isPending, startTransition] = useTransition()
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -58,40 +69,23 @@ const FinishOrderDialog = ({ open, onOpenChange }: FinishOrderDialogProps) => {
     },
     shouldUnregister: true
   });
-  const onSubmit = (data: FormSchema) => {
-    console.log({ data });
-    // try {
-    //   setIsLoading(true);
-    //   const consumptionMethod = searchParams.get(
-    //     "consumptionMethod",
-    //   ) as ConsumptionMethod;
-
-    //   const order = await createOrder({
-    //     consumptionMethod,
-    //     customerCpf: data.cpf,
-    //     customerName: data.name,
-    //     products,
-    //     slug,
-    //   });
-    //   const { sessionId } = await createStripeCheckout({
-    //     products,
-    //     orderId: order.id,
-    //     slug,
-    //     consumptionMethod,
-    //     cpf: data.cpf,
-    //   });
-    //   if (!process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY) return;
-    //   const stripe = await loadStripe(
-    //     process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY,
-    //   );
-    //   stripe?.redirectToCheckout({
-    //     sessionId: sessionId,
-    //   });
-    // } catch (error) {
-    //   console.error(error);
-    // } finally {
-    //   setIsLoading(false);
-    // }
+  const onSubmit = async (data: FormSchema) => {
+    try {
+      const consumptionMethod = searchParams.get("consumptionMethod") as ConsumptionMethod;
+      startTransition(async () => {
+        await createOrder({
+          consumptionMethod,
+          customerCpf: data.cpf,
+          customerName: data.name,
+          products,
+          slug,
+        })
+        onOpenChange(false);
+        toast.success("Pedido finalizado com sucesso!");
+      })
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
@@ -140,16 +134,24 @@ const FinishOrderDialog = ({ open, onOpenChange }: FinishOrderDialogProps) => {
                 )}
               />
               <DrawerFooter>
-                <Button type="submit" variant="destructive" className="rounded-full">Submit</Button>
+                <Button
+                  type="submit"
+                  variant="destructive"
+                  className="rounded-full"
+                  disabled={isPending}
+                >
+                  {isPending && <Loader2Icon className="animate-spin" />}
+                  Finalizar
+                </Button>
                 <DrawerClose asChild>
-                  <Button className="w-full rounded-full" variant="outline">Cancel</Button>
+                  <Button className="w-full rounded-full" variant="outline">Cancelar</Button>
                 </DrawerClose>
               </DrawerFooter>
             </form>
           </Form>
         </div>
       </DrawerContent>
-    </Drawer>
+    </Drawer >
   );
 }
 

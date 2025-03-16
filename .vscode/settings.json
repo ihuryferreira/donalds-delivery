@@ -13,5 +13,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-  "compile-hero.disable-compile-files-on-did-save-code": false
+  "editor.formatOnSave": true
 }
