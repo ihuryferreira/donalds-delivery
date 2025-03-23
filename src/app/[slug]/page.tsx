@@ -17,7 +17,7 @@ const RestaurantPage = async ({ params }: RestaurantPageProps) => {
   }
   return (
     <>
-      <div className="flex h-dvh flex-col items-center justify-center px-6 pt-9">
+      <div className="flex h-dvh flex-col items-center justify-between px-6 pt-9">
         {/* LOGO E TITULO */}
         <div className="flex flex-col items-center gap-2">
           <Image
@@ -51,6 +51,55 @@ const RestaurantPage = async ({ params }: RestaurantPageProps) => {
             imageAlt="Para levar"
             imageUrl="/takeaway.png"
           />
+        </div>
+        <div className="py-3 text-center">
+          <p className="text-xs font-normal text-foreground">
+            Feito com ❤️ por Ihury Ferreira.
+          </p>
+          <div className="flex justify-between text-center gap-3 my-3">
+            <a
+              href="https://www.instagram.com/ihuryferreira/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center text-gray-700 hover:text-gray-900 transition"
+            >
+              <Image
+                src="/instagram-icon.png"
+                alt="Instagram"
+                width={32}
+                height={32}
+              />
+              <span className="font-medium">Instagram</span>
+            </a>
+            <a
+              href="https://br.linkedin.com/in/ihury-ferreira-de-fran%C3%A7a-10b3121b8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-1 text-gray-700 hover:text-gray-900 transition"
+            >
+              <Image
+                src="/linkedin-icon.svg"
+                alt="Linkedin"
+                width={18}
+                height={18}
+              />
+              <span className="font-medium">Linkedin</span>
+            </a>
+            <a
+              href="https://github.com/ihuryferreira"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-1 text-gray-700 hover:text-gray-900 transition"
+            >
+              <Image
+                src="/github.svg"
+                alt="Github"
+                width={18}
+                height={18}
+              />
+              <span className="font-medium">GitHub</span>
+            </a>
+          </div>
         </div>
       </div>
     </>
