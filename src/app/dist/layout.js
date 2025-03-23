@@ -1,11 +1,14 @@
 "use strict";
 exports.__esModule = true;
 exports.metadata = void 0;
-require("./globals.css");
-var google_1 = require("next/font/google");
-var cart_1 = require("./[slug]/menu/contexts/cart");
-var sonner_1 = require("@/components/ui/sonner");
-var poppins = google_1.Poppins({
+import "./globals.css";
+
+import { Poppins } from "next/font/google";
+
+import { Toaster as sonner_1 } from "@/components/ui/sonner";
+
+import { CartProvider } from "./[slug]/menu/contexts/cart";
+var poppins = Poppins({
     weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
     subsets: ["latin"]
 });
@@ -19,7 +22,7 @@ function RootLayout(_a) {
         React.createElement("head", null,
             React.createElement("meta", { name: "viewport", content: "width=device-width, initial-scale=1.0" })),
         React.createElement("body", { className: poppins.className + " antialiased" },
-            React.createElement(cart_1.CartProvider, null, children),
+            React.createElement(CartProvider, null, children),
             React.createElement(sonner_1.Toaster, null))));
 }
 exports["default"] = RootLayout;
