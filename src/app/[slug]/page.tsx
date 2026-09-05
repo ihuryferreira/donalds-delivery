@@ -52,11 +52,11 @@ const RestaurantPage = async ({ params }: RestaurantPageProps) => {
             imageUrl="/takeaway.png"
           />
         </div>
-        <div className="py-3 text-center">
+        <div className="py-3 max-w-full min-h-auto text-center">
           <p className="text-xs font-normal text-foreground">
             Feito com ❤️ por Ihury Ferreira.
           </p>
-          <div className="flex justify-between text-center gap-3 my-3">
+          <div className="flex justify-center items-center gap-4 my-3">
             <a
               href="https://www.instagram.com/ihuryferreira/"
               target="_blank"
@@ -66,10 +66,10 @@ const RestaurantPage = async ({ params }: RestaurantPageProps) => {
               <Image
                 src="/instagram-icon.png"
                 alt="Instagram"
-                width={32}
-                height={32}
+                width={25}
+                height={25}
               />
-              <span className="font-medium">Instagram</span>
+              <span className="text-xs sm:text-base font-medium">Instagram</span>
             </a>
             <a
               href="https://br.linkedin.com/in/ihury-ferreira-de-fran%C3%A7a-10b3121b8"
@@ -83,7 +83,7 @@ const RestaurantPage = async ({ params }: RestaurantPageProps) => {
                 width={18}
                 height={18}
               />
-              <span className="font-medium">Linkedin</span>
+              <span className="text-xs sm:text-base font-medium">Linkedin</span>
             </a>
             <a
               href="https://github.com/ihuryferreira"
@@ -97,7 +97,7 @@ const RestaurantPage = async ({ params }: RestaurantPageProps) => {
                 width={18}
                 height={18}
               />
-              <span className="font-medium">GitHub</span>
+              <span className="text-xs min-[370px]:text-base font-medium">GitHub</span>
             </a>
           </div>
         </div>
