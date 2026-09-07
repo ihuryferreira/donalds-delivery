@@ -1,6 +1,6 @@
 {
   "name": "aplicativo-delivery",
-  "version": "0.1.0",
+  "version": "1.0.4",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,6 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate"
+  },
+  "engines": {
+    "node": "24.x"
   },
   "prisma": {
     "seed": "ts-node ./prisma/seed.ts"
@@ -40,7 +43,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@types/node": "^20",
+    "@types/node": "^24.0.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@typescript-eslint/eslint-plugin": "^8.26.0",
