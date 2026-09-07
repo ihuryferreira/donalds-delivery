@@ -17,7 +17,7 @@ const RestaurantPage = async ({ params }: RestaurantPageProps) => {
   }
   return (
     <>
-      <div className="flex h-dvh flex-col items-center justify-between px-6 pt-9">
+      <div className="flex h-dvh flex-col items-center justify-between px-1 pt-9">
         {/* LOGO E TITULO */}
         <div className="flex flex-col items-center gap-2">
           <Image
